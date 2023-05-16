@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <p class="card-text">{{ post.preview }}</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="text-body-secondary">{{ dateFormat() }}</p>
+                            <p class="text-body-secondary">{{ dateFormat(new Date(post.createdAt)) }}</p>
                         </div>
                     </div>
                 </div>
@@ -27,13 +27,13 @@
         <button @click="nextPage()" :disabled="pageNumber >= pagesCount - 1">Вперед</button>
     </div>
 </template>
-<script setup lang="js">
+<script setup lang="ts">
     import {usePosts} from "~/composables/usePosts";
-    import {ref} from 'vue'
+    import {ref} from 'vue';
 
     const posts = await usePosts()
     const pageNumber = ref(0)
-    const pagesCount = Math.ceil(posts.value.length / 10)
+    const pagesCount = Math.ceil(posts.value.length / 15)
 
     const nextPage = () => {
         return  pageNumber.value++
@@ -41,21 +41,25 @@
     const prevPage = () => {
         return pageNumber.value--
     }
-
     const paginateData = computed(() => {
         const start = pageNumber.value * pagesCount
         const end = start + pagesCount
-        return posts.value.slice(start, end)
+        return posts.value.reverse().slice(start, end)
     })
     const dateFormat = (date) => {
-        const options = {
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
+        try {
+            const options = {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+            }
+            return new Intl.DateTimeFormat('ru-RU', options).format(date)
+        } catch (e) {
+            console.log(e)
+            return '-'
         }
-        return new Intl.DateTimeFormat('ru-RU', options).format(date)
     }
 
 </script>
