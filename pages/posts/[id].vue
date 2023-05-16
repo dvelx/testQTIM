@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="card shadow-sm">
-          <img :src="post.image" alt="preview">
+          <img :src="post.image" :alt="post.preview">
           <div class="card-body">
               <h3 class="card-title">{{ post.title }}</h3>
               <p class="card-text">{{ post.description }}</p>
