@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-      <BlogList />
+      <PostsList />
   </div>
 </template>
 <script setup>
-import BlogList from "~/components/BlogList.vue";
+import PostsList from "~/components/PostsList.vue";
 </script>

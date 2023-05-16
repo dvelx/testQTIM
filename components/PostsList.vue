@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <p class="card-text">{{ post.preview }}</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-body-secondary">{{ post.createdAt }}</small>
+                            <p class="text-body-secondary">{{ dateFormat() }}</p>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
         <button @click="nextPage()" :disabled="pageNumber >= pagesCount - 1">Вперед</button>
     </div>
 </template>
-<script setup lang="ts">
+<script setup lang="js">
     import {usePosts} from "~/composables/usePosts";
     import {ref} from 'vue'
 
@@ -47,6 +47,17 @@
         const end = start + pagesCount
         return posts.value.slice(start, end)
     })
+    const dateFormat = (date) => {
+        const options = {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+        }
+        return new Intl.DateTimeFormat('ru-RU', options).format(date)
+    }
+
 </script>
 
 <style scoped>
