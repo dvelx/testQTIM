@@ -1,7 +1,12 @@
 <template>
   <div class="container">
       <div class="card shadow-sm">
-          <img :src="post.image" :alt="post.preview">
+          <img :src="post.image"
+               :alt="post.preview"
+               @error="($event) => {
+                    $event.target.src = './images/nofoto.png'
+                }"
+          >
           <div class="card-body">
               <h3 class="card-title">{{ post.title }}</h3>
               <p class="card-text">{{ post.description }}</p>

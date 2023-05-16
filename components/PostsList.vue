@@ -11,6 +11,9 @@
                         width="100%"
                         height="225"
                         :src="post.image"
+                        @error="($event) => {
+                            $event.target.src = './images/nofoto.png'
+                        }"
                     >
                     <div class="card-body">
                         <p class="card-text">{{ post.preview }}</p>
