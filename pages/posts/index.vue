@@ -1,3 +1,1 @@
-<template>
-  posts index
-</template>
+<template>posts index</template>

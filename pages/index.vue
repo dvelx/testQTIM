@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <PostsList />
+    <PostsList />
   </div>
 </template>
 <script setup>
