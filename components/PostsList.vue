@@ -39,7 +39,7 @@ import { ref } from "vue";
 
 const posts = await usePosts();
 const pageNumber = ref(0);
-const pagesCount = Math.ceil(posts.value.length / 15);
+const pagesCount = Math.ceil(posts.length / 15);
 
 const nextPage = () => {
   return pageNumber.value++;
@@ -50,7 +50,7 @@ const prevPage = () => {
 const paginateData = computed(() => {
   const start = pageNumber.value * pagesCount;
   const end = start + pagesCount;
-  return posts.value.reverse().slice(start, end);
+  return posts.reverse().slice(start, end);
 });
 const dateFormat = (date) => {
   try {
@@ -67,6 +67,7 @@ const dateFormat = (date) => {
     return "-";
   }
 };
+console.log(posts);
 </script>
 
 <style scoped>

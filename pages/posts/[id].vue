@@ -44,4 +44,5 @@ const dateFormat = (date) => {
     return "-";
   }
 };
+console.log(post);
 </script>
